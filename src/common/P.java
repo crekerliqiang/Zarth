@@ -12,15 +12,24 @@ public class P {
 
 	private static void print(final String s) {
         String date = sDate.format(new Date(System.currentTimeMillis()));
-		System.out.println(date + "  " + s);
+		System.out.print(date + "  " + s);
 	}
-	public static void p(String s) {
+	private static void println(final String s) {
 		print(s);
+		System.out.println();
+	}
+	
+	public static void p(String s) {
+		println(s);
 	}
 	public static void p(int s) {
-		print(String.valueOf(s));
+		println(String.valueOf(s));
 	}
 	public static void p(int [] s) {
-		print(Arrays.toString(s));
+		println(Arrays.toString(s));
+	}
+	public static void p(String info,int [] s) {
+		print(info);
+		System.out.println(Arrays.toString(s));
 	}
 }

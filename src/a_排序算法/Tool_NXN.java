@@ -1,4 +1,4 @@
-package a.排序算法;
+package a_排序算法;
 
 import common.MyException;
 import common.P;
@@ -19,7 +19,7 @@ public class Tool_NXN {
 		final int n = src.length;
 		for(int i = 0;i < n;i++) {
 			for(int j = 1;j < n - i;j++) {
-				if(src[j] > src[j-1]) {
+				if(src[j] < src[j-1]) {
 					int tmp;
 					tmp = src[j];
 					src[j] = src[j-1];
@@ -53,7 +53,7 @@ public class Tool_NXN {
         		}
         	}
         	//交换 src[index] src[i]
-        	if(min > src[i]) {
+        	if(min < src[i]) {
         		int tmp = src[i];
         		src[i] = src[index];
         		src[index] = tmp;
