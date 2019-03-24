@@ -5,7 +5,7 @@ public class Data {
 //	final static String S1 = "BBC ABCDAB ABCDABCDABDE";
 
 	
-	final static String P1  = "ABCDABCDABCDABCDABCDABCDABCDABCD";
+	final static String P1  = "ABCDABD";
 	final static String S1 = "构、面试、算法，才再次仔细回顾了这个KMP，在综合了一些网友的理解、以及算法班的两位讲师朋友曹博、邹博的理解之后，写了9张PPT，发在微博上。随后，一不做二不休，索性将PPT上的内容整理到了本文之中（后来文章越写越完整，所含内容早已不再是九张PPT 那样简单了）。\n" + 
 			"\n" + 
 			"    KMP本身不复杂，但网上绝大部分的文章（包括本文的2011年版本）把它讲混乱了。下面，咱们从暴力匹配算法讲起，随后阐述KMP的流程 步骤、next 数组的简单求解 递推原理 代码求解，接着基于next 数组匹配，谈到有限状态自动机，next 数组的优化，KMP的时间复杂度分析，最后简要介绍两个KMP的扩展算法。\n" + 

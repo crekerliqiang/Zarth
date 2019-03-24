@@ -11,7 +11,8 @@ public class Kmp {
 		int [] next = new int[p.length()];
 		next[0] = -1;
 		int k = -1;
-		for(int j = 0;j < p.length();j++) {
+		for(int j = 0;j < p.length() - 1;) {
+			//注意是 p.length - 1
 			//p[k]表示前缀，p[j]表示后缀  
 			if (k == -1 || p.charAt(j) == p.charAt(k)){
 				j++;
