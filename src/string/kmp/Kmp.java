@@ -3,82 +3,95 @@ package string.kmp;
 import common.P;
 
 public class Kmp {
-	private static int []mNext;
 	/**
 	 * 求next数组
 	 */
 	public static int [] GetNextval(String p){
+		if(p == null || p.length() == 0)return null;
 		int [] next = new int[p.length()];
-		int pLen = p.length();
-		if(pLen == 0)return null;
 		next[0] = -1;
 		int k = -1;
-		int j = 0;
-		while (j < pLen - 1)
-		{
+		for(int j = 0;j < p.length();j++) {
 			//p[k]表示前缀，p[j]表示后缀  
-			if (k == -1 || p.charAt(j) == p.charAt(k))
-			{
+			if (k == -1 || p.charAt(j) == p.charAt(k)){
 				j++;
 				k++;
 				next[j] = k;
-				//较之前next数组求法，改动在下面4行
-//				if (p.charAt(j) != p.charAt(k))
-//					next[j] = k;   //之前只有这一行
-//				else
-//					//因为不能出现p[j] = p[ next[j ]]，所以当出现时需要继续递归，k = next[k] = next[next[k]]
-//					next[j] = next[k];
-			}
-			else
-			{
+			}else{
 				k = next[k];
 			}
 		}
 		return next;
 	}
-	
-	public static int KmpSearch(String s, String p)
-	{
+	/**
+	 * 该算法是在暴力方法1的基础上优化，效果明显优于KmpSearch2的效果
+	 * @param s
+	 * @param t
+	 * @param next
+	 * @return
+	 */
+	private static int KmpSearch1(String s, String t,int [] next){
 
 		int i = 0;
 		int j = 0;
-		int sLen = s.length();
-		int pLen = p.length();
-		while (i < sLen && j < pLen)
-		{
+		for(i = 0;i < s.length() - t.length() + 1;i++) {
 			
-			//①如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++    
+			for(j = 0;j < t.length();j++) {
+				
+				if(s.charAt(i + j) != t.charAt(j)) {
+					j = next[j];
+					break;
+				}else if(j == t.length() -  1){
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
+	
+	/**
+	 * 该方式在暴力破解方法2的基础上优化
+	 * @param s
+	 * @param p
+	 * @param next
+	 * @return
+	 */
+	private static int KmpSearch2(String s, String p,int [] next){
+		int i = 0;
+		int j = 0;
+		while (i < s.length() && j < p.length()){
 			if (j == -1 || s.charAt(i) == p.charAt(j))
 			{
 				i++;
 				j++;
-			}
-			else
-			{
-				//②如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]    
-				//next[j]即为j所对应的next值      
-				j = mNext[j];
-				
-			}
-			if(pLen == j) {
-				break;
-			}
-			
+			}else{
+				j = next[j];
+			}	
 		}
-		if (j == pLen)
+		if (j == p.length())
 			return i - j;
 		else
 			return -1;
 	}
+
 	public  static int KmpSearch(final String s, final String p,final int repeat) {
 		int value = 0;
 		// TODO time 用于统计算法执行时间 正常情况下需要删除
+		int [] next = GetNextval(p);
+		//使用方式1
 		long time = System.currentTimeMillis();
-		mNext = GetNextval(p);
 		for(int i = 0;i<repeat;i++) {
-			value = KmpSearch(s,p);
+			value = KmpSearch1(s,p,next);
 		}
-		P.p(" run kmp  " + (System.currentTimeMillis() - time));
+		P.p(" run kmp1  " + (System.currentTimeMillis() - time));
+		P.p(value);
+		//使用方式2
+		time = System.currentTimeMillis();
+		for(int i = 0;i<repeat;i++) {
+			value = KmpSearch2(s,p,next);
+		}
+		P.p(" run kmp2  " + (System.currentTimeMillis() - time));
+		P.p(value);
 		return value;
 
 	}

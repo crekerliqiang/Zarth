@@ -5,7 +5,7 @@ public class Data {
 //	final static String S1 = "BBC ABCDAB ABCDABCDABDE";
 
 	
-	final static String P1  = "ABCDABD";
+	final static String P1  = "ABCDABCDABCDABCDABCDABCDABCDABCD";
 	final static String S1 = "构、面试、算法，才再次仔细回顾了这个KMP，在综合了一些网友的理解、以及算法班的两位讲师朋友曹博、邹博的理解之后，写了9张PPT，发在微博上。随后，一不做二不休，索性将PPT上的内容整理到了本文之中（后来文章越写越完整，所含内容早已不再是九张PPT 那样简单了）。\n" + 
 			"\n" + 
 			"    KMP本身不复杂，但网上绝大部分的文章（包括本文的2011年版本）把它讲混乱了。下面，咱们从暴力匹配算法讲起，随后阐述KMP的流程 步骤、next 数组的简单求解 递推原理 代码求解，接着基于next 数组匹配，谈到有限状态自动机，next 数组的优化，KMP的时间复杂度分析，最后简要介绍两个KMP的扩展算法。\n" + 
@@ -14,7 +14,7 @@ public class Data {
 			"\n" + 
 			" \n" + 
 			"2. 暴力匹配算法\n" + 
-			"    假设现在我们面临这样一个问题：有一个文本串S，和一个模式串P，现在要查找P在S中的位置，怎么查找呢？\n" + 
+			"    假设现在我们面临ABCDABCDABCDABCDABCDABCDABCDABC这样一个问题：有一个文本串S，和一个模式串P，现在要查找P在S中的位置，怎么查找呢？\n" + 
 			"\n" + 
 			"    如果用暴力匹配的思路，并假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置，则有：\n" + 
 			"\n" + 
@@ -22,7 +22,7 @@ public class Data {
 			"如果失配（即S[i]! = P[j]），令i = i - (j - 1)，j = 0。相当于每次匹配失败时，i 回溯，j 被置为0。\n" + 
 			"    理清楚了暴力匹配算法的流程及内在的逻辑，咱们可以写出暴力匹配的代码，如下：\n" + 
 			"\n" + 
-			"int ViolentMatch(char* s, char* p)\n" + 
+			"int ViolentMatABCDABCDABCDABCDABCDABCDABCDABECDch(char* s,ABCDABD char* p)\n" + 
 			"{\n" + 
 			"	int sLen = strlen(s);\n" + 
 			"	int pLen = strlen(p);\n" + 
@@ -44,7 +44,7 @@ public class Data {
 			"			j = 0;\n" + 
 			"		}\n" + 
 			"	}\n" + 
-			"	//匹配成功，返回模式串p在文本串s中的位置，否则返回-1\n" + 
+			"	//匹配成功，返回模式串p在ABCDABCDABCDABCDABCDABCDABCDABCD文本串s中的位置，否则返回-1\n" + 
 			"	if (j == pLen)\n" + 
 			"		return i - j;\n" + 
 			"	else\n" + 
