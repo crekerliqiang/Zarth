@@ -47,7 +47,7 @@ public class Tool_NXN {
         	min = src[i];
         	int index = i;
         	for(int j = i;j < n;j++) {
-        		if(src[j] > min) {
+        		if(min > src[j]) {
         			min = src[j];
         			index = j;
         		}

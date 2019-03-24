@@ -10,7 +10,7 @@ public class P {
 	private static SimpleDateFormat sDate = new 
 			SimpleDateFormat("yyyy-MM-dd  HH:mm:ss/SSS");
 
-	private static void print(final String s) {
+	private static void print(final Object s) {
         String date = sDate.format(new Date(System.currentTimeMillis()));
 		System.out.print(date + "  " + s);
 	}
@@ -18,9 +18,16 @@ public class P {
 		print(s);
 		System.out.println();
 	}
+	private static void println(final boolean b) {
+		print(b);
+		System.out.println();
+	}
 	
 	public static void p(String s) {
 		println(s);
+	}
+	public static void p(boolean b) {
+		println(b);
 	}
 	public static void p(int s) {
 		println(String.valueOf(s));

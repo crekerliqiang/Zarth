@@ -8,26 +8,43 @@ import common.P;
 public class Demo {
 
 	public static void main(String[] args) throws MyException{
-		//冒泡排序法
-		int [] tmp = Data.getData();
-		P.p(Tool_NXN.bubbleSort(tmp));
+		P.p("src data");
+		P.p(Tool_NXN.bubbleSort(Data.getData()));
 		
-		//选择排序法
-		int [] tmp1 = Data.getData();
-		P.p(Tool_NXN.selectionSort(tmp1));
-		//插入排序
-		int [] tmp2 = Data.getData();
-		P.p(Tool_NXN.insertSort(tmp2));
+		P.p("冒泡排序法");
+		P.p(Data.equals(
+				Data.getStandard(),
+				Tool_NXN.bubbleSort(Data.getData())));
 		
-		//快速排序
-		final int tmp3 [] = Data.getData();
-		Tool_NLOGN tool = new Tool_NLOGN();
-		P.p(tool.quciksort(tmp3));
+		P.p("选择排序法");
+		P.p(Data.equals(
+				Data.getStandard(),
+				Tool_NXN.selectionSort(Data.getData())));
 		
-		//归并排序
-		final int tmp4 [] = Data.getData();
-		P.p(Data.getData());
-		P.p(Tool_NLOGN.mergeSort(tmp4));
+		P.p("插入排序");
+		P.p(Data.equals(
+				Data.getStandard(),
+				Tool_NXN.insertSort(Data.getData())));	
+		
+		P.p("快速排序");
+		P.p(Data.equals(
+				Data.getStandard(),
+				new Tool_NLOGN().quciksort(Data.getData())));
+		
+		P.p("归并排序");
+		P.p(Data.equals(
+				Data.getStandard(),
+				Tool_NLOGN.mergeSort(Data.getData())));
+		
+		P.p("计数排序");
+		P.p(Data.equals(
+				Data.getStandard(),
+				Tool_N.countSort(Data.getData())));
+		
+		P.p("基数排序");
+		P.p(Data.equals(
+				Data.getStandard(),
+				Tool_N.RadixSort(Data.getData(),2)));	
 
 	}
 
