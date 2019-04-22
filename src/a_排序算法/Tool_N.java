@@ -74,6 +74,7 @@ public class Tool_N {
 		//创建一个额外的缓存二位数组
 		int [][] temp = new int[10][src.length];
 		resetTemp(temp);
+		//记录每一位数里面存了多少个数
 		int [] index = new int[10];
 		for(int i = 0;i < wigit;i++) {
 			//装箱
@@ -86,7 +87,6 @@ public class Tool_N {
 			//倒箱（从前往后把temp往src里面倒）
 			int srcIndex = 0;
 			for(int j = 0;j < 10;j++) {
-				
 				for(int k = 0;k < src.length ;k++) {
 					if(temp[j][k] != -1) {
 						src[srcIndex] = temp[j][k];
